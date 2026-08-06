@@ -129,6 +129,50 @@ def load_feed(quantyx_root: Path | None = None) -> list[LivePosting]:
     return out
 
 
+def false_positive_drivers(model, postings: list[LivePosting], order, k: int = 6) -> dict:
+    """Which features push the highest-scoring *live* postings upward, and why.
+
+    On a feed with no known fraud, every high score is a false positive in waiting, so
+    aggregating their SHAP drivers is the error analysis. Doing it here rather than by
+    eye means the finding is regenerated with the data instead of being frozen in a
+    slide the moment the feed changes.
+
+    The mechanism this surfaced on the first run is worth stating, because it is a
+    feature bug rather than a modelling one: the model learned the bigram "work from"
+    from "work from home", and a legitimate posting advertising "5 Days Work From
+    Office" trips it. Two other patterns showed up alongside it — fintech vocabulary
+    ("money", "income") colliding with scam vocabulary, and Adzuna's contact-redaction
+    artifacts ("hidden email orhidden mobileto") inflating punctuation_ratio.
+    """
+    from veridyx.explain import explain
+    from veridyx.features import portable_features
+
+    subset = portable_features([postings[i].request for i in order])
+    tally: dict[str, dict] = {}
+    for contributions in explain(model, subset, k=k):
+        for contribution in contributions:
+            if contribution.value <= 0:
+                continue
+            entry = tally.setdefault(
+                contribution.feature, {"postings": 0, "total_push": 0.0}
+            )
+            entry["postings"] += 1
+            entry["total_push"] += contribution.value
+
+    ranked = sorted(tally.items(), key=lambda kv: -kv[1]["total_push"])
+    return {
+        "n_examined": len(order),
+        "drivers": [
+            {
+                "feature": name,
+                "postings_affected": stats["postings"],
+                "total_push_toward_fraud": round(stats["total_push"], 4),
+            }
+            for name, stats in ranked[:15]
+        ],
+    }
+
+
 def score_feed(
     postings: list[LivePosting], model, threshold: float
 ) -> tuple[np.ndarray, list]:
@@ -221,6 +265,16 @@ def _main(argv: list[str] | None = None) -> int:
         )
 
     order = np.argsort(scores)[::-1][: args.top]
+    report["false_positive_drivers"] = false_positive_drivers(model, postings, order)
+    LIVE_FEED_FILE.write_text(json.dumps(report, indent=2) + "\n")
+
+    print(f"\n  what pushes the top {args.top} upward (error analysis)")
+    for driver in report["false_positive_drivers"]["drivers"][:8]:
+        print(
+            f"    {driver['total_push_toward_fraud']:+7.2f}  {driver['feature'][:30]:30s} "
+            f"({driver['postings_affected']} postings)"
+        )
+
     print(f"\n  top {args.top} by score")
     for rank, i in enumerate(order, 1):
         posting = postings[i]

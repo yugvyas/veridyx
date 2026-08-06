@@ -33,5 +33,85 @@
       "mean_score": 0.00018591661446405307
     }
   },
-  "model_version": "lightgbm-portable-v1"
+  "model_version": "lightgbm-portable-v1",
+  "false_positive_drivers": {
+    "n_examined": 20,
+    "drivers": [
+      {
+        "feature": "of",
+        "postings_affected": 8,
+        "total_push_toward_fraud": 4.671
+      },
+      {
+        "feature": "punctuation_ratio",
+        "postings_affected": 5,
+        "total_push_toward_fraud": 4.6492
+      },
+      {
+        "feature": "english",
+        "postings_affected": 11,
+        "total_push_toward_fraud": 4.4782
+      },
+      {
+        "feature": "engineering",
+        "postings_affected": 5,
+        "total_push_toward_fraud": 4.2102
+      },
+      {
+        "feature": "work from",
+        "postings_affected": 2,
+        "total_push_toward_fraud": 3.8228
+      },
+      {
+        "feature": "from",
+        "postings_affected": 7,
+        "total_push_toward_fraud": 3.654
+      },
+      {
+        "feature": "income",
+        "postings_affected": 2,
+        "total_push_toward_fraud": 3.4212
+      },
+      {
+        "feature": "has_salary",
+        "postings_affected": 4,
+        "total_push_toward_fraud": 3.0788
+      },
+      {
+        "feature": "money",
+        "postings_affected": 1,
+        "total_push_toward_fraud": 2.5827
+      },
+      {
+        "feature": "earn",
+        "postings_affected": 1,
+        "total_push_toward_fraud": 2.4441
+      },
+      {
+        "feature": "link",
+        "postings_affected": 1,
+        "total_push_toward_fraud": 2.3678
+      },
+      {
+        "feature": "we",
+        "postings_affected": 4,
+        "total_push_toward_fraud": 1.9702
+      },
+      {
+        "feature": "scam_phrase_count",
+        "postings_affected": 1,
+        "total_push_toward_fraud": 1.5641
+      },
+      {
+        "feature": "engineering and",
+        "postings_affected": 3,
+        "total_push_toward_fraud": 1.55
+      },
+      {
+        "feature": "alignment",
+        "postings_affected": 1,
+        "total_push_toward_fraud": 1.4466
+      }
+    ]
+  }
 }
