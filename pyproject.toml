@@ -1,8 +1,39 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "veridyx"
 version = "0.1.0"
 description = "Fraudulent job posting detection, evaluated honestly and deployed against a live feed"
 requires-python = ">=3.11,<3.14"
+license = "MIT"
+
+# Declared here, not only in requirements.txt, because the Hugging Face Space installs
+# this package with `pip install git+https://github.com/yugvyas/veridyx` — a plain
+# requirements.txt is invisible to that. torch/transformers are deliberately absent:
+# the endpoint serves the GBM and must not pull a 1 GB dependency it never imports.
+dependencies = [
+    "numpy>=1.26,<3",
+    "pandas>=2.2,<4",
+    "scipy>=1.14,<2",
+    "scikit-learn>=1.5,<2",
+    "lightgbm>=4.5,<5",
+    "shap>=0.46,<1",
+    "matplotlib>=3.9,<4",
+    "pydantic>=2.10,<3",
+]
+
+[project.optional-dependencies]
+# Fetching the raw dataset; not needed to serve a trained model.
+data = ["datasets>=3.2,<6"]
+# The DistilBERT ceiling check.
+bert = ["torch>=2.5,<3", "transformers>=4.46,<6"]
+
+# Only the package ships. Without this, setuptools sees serve/, tests/, data/ and
+# reports/ as candidate top-level packages and refuses to build at all.
+[tool.setuptools.packages.find]
+include = ["veridyx*"]
 
 [tool.ruff]
 line-length = 92

@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: veridyx
+Version: 0.1.0
+Summary: Fraudulent job posting detection, evaluated honestly and deployed against a live feed
+License-Expression: MIT
+Requires-Python: <3.14,>=3.11
+Requires-Dist: numpy<3,>=1.26
+Requires-Dist: pandas<4,>=2.2
+Requires-Dist: scipy<2,>=1.14
+Requires-Dist: scikit-learn<2,>=1.5
+Requires-Dist: lightgbm<5,>=4.5
+Requires-Dist: shap<1,>=0.46
+Requires-Dist: matplotlib<4,>=3.9
+Requires-Dist: pydantic<3,>=2.10
+Provides-Extra: data
+Requires-Dist: datasets<6,>=3.2; extra == "data"
+Provides-Extra: bert
+Requires-Dist: torch<3,>=2.5; extra == "bert"
+Requires-Dist: transformers<6,>=4.46; extra == "bert"

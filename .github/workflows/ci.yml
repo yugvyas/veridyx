@@ -1,0 +1,44 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      # LightGBM links against OpenMP at import time. It is present on ubuntu-latest
+      # runners, but installing it explicitly means a runner image change cannot break
+      # the build with a dlopen error that looks nothing like a dependency problem.
+      - name: Install OpenMP
+        run: sudo apt-get update && sudo apt-get install -y libgomp1
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Lint
+        run: ruff check .
+
+      # Bare `pytest`, never `python -m pytest`: the latter puts the CWD on sys.path
+      # and hides import errors that only surface here.
+      - name: Test
+        run: pytest
+
+      # The package is installed from git by the Hugging Face Space, so a build failure
+      # breaks the deployed endpoint without breaking any test. Checked on every push.
+      - name: Verify the package builds and imports
+        run: |
+          pip install .
+          cd /tmp && python -c "import veridyx; from veridyx.schema import ScoreRequest; print(veridyx.__version__)"
