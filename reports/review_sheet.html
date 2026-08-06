@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Veridyx — review sheet</title><style>
+:root { color-scheme: light dark;
+  --surface:#fcfcfb; --card:#ffffff; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --blue:#2a78d6; --orange:#eb6834; }
+@media (prefers-color-scheme: dark) { :root {
+  --surface:#1a1a19; --card:#232322; --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --blue:#3987e5; --orange:#d95926; } }
+* { box-sizing: border-box; }
+body { margin:0; padding:32px 20px 64px; background:var(--surface); color:var(--ink);
+  font:15px/1.55 ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif; }
+.wrap { max-width: 940px; margin: 0 auto; }
+h1 { font-size:26px; margin:0 0 6px; letter-spacing:-0.01em; }
+.sub { color:var(--muted); font-size:13.5px; margin-bottom:28px; }
+.banner { border-left:3px solid var(--orange); background:color-mix(in srgb,var(--orange) 8%,transparent);
+  padding:12px 16px; border-radius:0 6px 6px 0; margin-bottom:28px; font-size:14px; color:var(--ink2); }
+.card { background:var(--card); border:1px solid var(--grid); border-radius:10px;
+  padding:18px 20px; margin-bottom:16px; }
+.head { display:flex; justify-content:space-between; align-items:baseline; gap:16px; }
+.title { font-weight:650; font-size:16.5px; }
+.score { font-variant-numeric:tabular-nums; font-weight:650; color:var(--blue); white-space:nowrap; }
+.meta { color:var(--muted); font-size:13px; margin:4px 0 12px; }
+.meta a { color:var(--muted); }
+.contribs { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
+.chip { font-size:12.5px; padding:3px 9px; border-radius:999px; border:1px solid var(--grid);
+  font-variant-numeric:tabular-nums; }
+.chip.up { color:var(--orange); border-color:color-mix(in srgb,var(--orange) 40%,var(--grid)); }
+.chip.down { color:var(--blue); border-color:color-mix(in srgb,var(--blue) 40%,var(--grid)); }
+.excerpt { color:var(--ink2); font-size:13.5px; white-space:pre-wrap; border-top:1px solid var(--grid);
+  padding-top:12px; margin:0; max-height:11em; overflow:auto; }
+.cmd { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12.5px;
+  color:var(--muted); margin-top:12px; }
+table { border-collapse:collapse; width:100%; font-size:13.5px; }
+th,td { text-align:left; padding:6px 10px; border-bottom:1px solid var(--grid); }
+th { color:var(--muted); font-weight:500; }
+</style></head>
+<body><div class="wrap">
+<h1>Review sheet</h1>
+<div class="sub">20 postings · model <code>lightgbm-portable-v1</code>
+ · operating threshold 0.9758 · 0 above it · generated 2026-08-06 18:33 UTC</div>
+<div class='banner'>Nothing in this feed crosses the operating threshold of 0.9758 — these are the 20 highest-scoring postings out of 1,006, shown so the model&#x27;s ranking can be judged even when it flags nothing. Check experiments/drift.json before reading a quiet model as a clean feed.</div>
+<div class="card">
+  <div class="head">
+    <span class="title">Data Science III</span>
+    <span class="score">0.4427</span>
+  </div>
+  <div class="meta">Bright Money
+    · India
+    · <code>adzuna:5821208777</code> · <a href="https://www.adzuna.in/details/5821208777?utm_medium=api&amp;utm_source=5304d241">source</a></div>
+  <div class="contribs"><span class="chip up">▲ money +2.58</span><span class="chip up">▲ income +1.61</span><span class="chip down">▼ about -0.63</span><span class="chip up">▲ english +0.41</span><span class="chip up">▲ punctuation_ratio +0.37</span><span class="chip down">▼ needs of -0.34</span></div>
+  <p class="excerpt">About Bright Money Bright Money is a Consumer FinTech for middle-income consumers. It brings together SaaS products to help consumers build credit, manage their debt, and get access to suitable loans and credit cards. These are the major financial needs of middle-income consumers living paycheck-to-paycheck. Bright is a profitable, India-built, U.S.-market Consumer FinTech, with revenue trajectory to $100M in the coming 6 months. The business model combines subscription revenue with a financial…</p>
+  <div class="cmd">python -m veridyx.review --record adzuna:5821208777 --decision fraud|legitimate|unclear</div>
+</div><div class="card">
+  <div class="head">
+    <span class="title">Azure Data Engineer</span>
+    <span class="score">0.3345</span>
+  </div>
+  <div class="meta">SP Staffing Services Private Limited Hiring For Leading MNC Company
+    · India
+    · <code>adzuna:5823127725</code> · <a href="https://www.adzuna.in/details/5823127725?utm_medium=api&amp;utm_source=5304d241">source</a></div>
+  <div class="contribs"><span class="chip up">▲ punctuation_ratio +3.19</span><span class="chip down">▼ engineer -1.03</span><span class="chip up">▲ of +0.73</span><span class="chip down">▼ candidates -0.70</span><span class="chip down">▼ location -0.69</span><span class="chip up">▲ uppercase_ratio +0.53</span></div>
+  <p class="excerpt">Warm Greetings from SP Staffing Services Role Azure Data Engineer Experience 5 to 12 yrs Work Location Pune Bangalore Mumbai Kolkata Hyderabad Job Description Azure Data Engineer Pyspark Python Azure Databricks Azure data factory Interested candidates Kindly share your updated resume to hidden email orhidden mobileto proceed further</p>
+  <div class="cmd">python -m veridyx.review --record adzuna:5823127725 --decision fraud|legitimate|unclear</div>
+</div><div class="card">
+  <div class="head">
+    <span class="title">Data Engineer</span>
+    <span class="score">0.2688</span>
+  </div>
+  <div class="meta">Greenlight Financial Technology
+    · Bangalore, Karnataka
+    · <code>adzuna:5819854393</code> · <a href="https://www.adzuna.in/details/5819854393?utm_medium=api&amp;utm_source=5304d241">source</a></div>
+  <div class="contribs"><span class="chip up">▲ earn +2.44</span><span class="chip down">▼ set -0.67</span><span class="chip up">▲ of +0.61</span><span class="chip up">▲ we +0.42</span><span class="chip up">▲ company +0.38</span><span class="chip up">▲ controls +0.35</span></div>
+  <p class="excerpt">Greenlight is the leading family fintech company on a mission to help parents raise financially smart kids. We proudly serve more than 6 million parents and kids with our award-winning banking app for families. With Greenlight, parents can automate allowance, manage chores, set flexible spend controls, and invest for their family’s future. Kids and teens learn to earn, save, spend wisely, and invest. At Greenlight, we believe every child should have the opportunity to become financially healthy…</p>
+  <div class="cmd">python -m veridyx.review --record adzuna:5819854393 --decision fraud|legitimate|unclear</div>
+</div><div class="card">
+  <div class="head">
+    <span class="title">Data Science Researcher AI Platform</span>
+    <span class="score">0.2255</span>
+  </div>
+  <div class="meta">ALIQAN Technologies
+    · Chennai, Tamil Nadu
+    · <code>adzuna:5823107491</code> · <a href="https://www.adzuna.in/details/5823107491?utm_medium=api&amp;utm_source=5304d241">source</a></div>
+  <div class="contribs"><span class="chip up">▲ work from +2.00</span><span class="chip up">▲ from +0.79</span><span class="chip down">▼ location -0.68</span><span class="chip up">▲ of +0.50</span><span class="chip down">▼ months -0.38</span><span class="chip up">▲ english +0.36</span></div>
+  <p class="excerpt">Job Title: Data Science Researcher AI Platform Experience : 710 Years Employment Type : Contract 6 Months (Extendable) Work Shift : Night Shift Location : Chennai 5 Days Work From Office Role Overview : We are seeking a highly skilled Data Science Researcher to drive innovation in AI-powered healthcare analytics. This role focuses on building advanced machine learning models, conducting statistical research, and extracting actionable insights from complex healthcare and insurance datasets. The …</p>
+  <div class="cmd">python -m veridyx.review --record adzuna:5823107491 --decision fraud|legitimate|unclear</div>
+</div><div class="card">
+  <div class="head">
+    <span class="title">Principal Data Scientist</span>
+    <span class="score">0.1093</span>
+  </div>
+  <div class="meta">Michelin
+    · Pune, Maharashtra
+    · <code>adzuna:5817917651</code> · <a href="https://www.adzuna.in/details/5817917651?utm_medium=api&amp;utm_source=5304d241">source</a></div>
+  <div class="contribs"><span class="chip up">▲ link +2.37</span><span class="chip up">▲ the +0.86</span><span class="chip up">▲ english +0.52</span><span class="chip down">▼ punctuation_ratio -0.32</span><span class="chip down">▼ and -0.28</span><span class="chip up">▲ word_count +0.28</span></div>
+  <p class="excerpt">Job description Principal Data Scientist KEY EXPECTED ACHIEVEMENTS The need is understood and formalized in a descriptive datasheet or Cahier des Charges the methods are clearly selected by their theoretical bases, advantages and disadvantages the data, its relevance and its source are described and prioritized the data are aggregated and the approach is documented. (Key or parameter allowing to link the different sources ) the analysis is implemented and documented the results of the analysis …</p>
+  <div class="cmd">python -m veridyx.review --record adzuna:5817917651 --decision fraud|legitimate|unclear</div>
+</div><div class="card">
+  <div class="head">
+    <span class="title">Machine Learning Engineer II - T&amp;S</span>
+    <span class="score">0.1014</span>
+  </div>
+  <div class="meta">Booking Holdings
+    · Bangalore, Karnataka
+    · <code>adzuna:5817919596</code> · <a href="https://www.adzuna.in/details/5817919596?utm_medium=api&amp;utm_source=5304d241">source</a></div>
+  <div class="contribs"><span class="chip up">▲ income +1.81</span><span class="chip up">▲ digit_ratio +0.50</span><span class="chip down">▼ net -0.43</span><span class="chip up">▲ english +0.36</span><span class="chip up">▲ to +0.36</span><span class="chip up">▲ company +0.36</span></div>
+  <p class="excerpt">Role Description Booking Holdings (NASDAQ: BKNG) is the world leader in online travel and related services, provided to customers and partners in over 220 countries and territories through six primary consumer-facing brands - Booking.com, KAYAK, Priceline, Agoda.com, Rentalcars.com, and OpenTable. The mission of Booking Holdings is to make it easier for everyone to experience the world. During 2019, the Company had consolidated revenues and net income of $15.1 billion and $4.9 billion, respecti…</p>
+  <div class="cmd">python -m veridyx.review --record adzuna:5817919596 --decision fraud|legitimate|unclear</div>
+</div><div class="card">
+  <div class="head">
+    <span class="title">Senior Data Engineer — Microsoft Fabric (Immediate Joiner)</span>
+    <span class="score">0.0792</span>
+  </div>
+  <div class="meta">EazyML
+    · India
+    · <code>adzuna:5823897731</code> · <a href="https://www.adzuna.in/land/ad/5823897731?se=ADz_VjqQ8RGkw8i02SesdQ&amp;utm_medium=api&amp;utm_source=5304d241&amp;v=4FACC27A8CAD7C780B38184CDFBB75BD38CEA945">source</a></div>
+  <div class="contribs"><span class="chip up">▲ work from +1.82</span><span class="chip up">▲ scam_phrase_count +1.56</span><span class="chip up">▲ immediate +1.43</span><span class="chip down">▼ an experienced -0.85</span><span class="chip down">▼ engineer -0.78</span><span class="chip up">▲ from +0.60</span></div>
+  <p class="excerpt">EazyML, recognized by Gartner, EazyML (www.EazyML.com) specializes in Responsible AI. Our solutions facilitate proactive compliance and sustainable automation, and the company is associated with breakthrough startups like Amelia.ai. This is a full-time Remote role for an experienced Data Engineer who enjoys solving complex data problems and takes ownership from design through delivery. You can work from home (anywhere in INDIA, job location is in India). This role is ideal for someone who can b…</p>
+  <div class="cmd">python -m veridyx.review --record adzuna:5823897731 --decision fraud|legitimate|unclear</div>
+</div><div class="card">
+  <div class="head">
+    <span class="title">Data Scientist</span>
+    <span class="score">0.0583</span>
+  </div>
+  <div class="meta">Innova solutinos
+    · Noida, Ghaziabad
+    · <code>adzuna:5817919130</code> · <a href="https://www.adzuna.in/details/5817919130?utm_medium=api&amp;utm_source=5304d241">source</a></div>
+  <div class="contribs"><span class="chip up">▲ skills +0.57</span><span class="chip up">▲ communication +0.54</span><span class="chip up">▲ english +0.50</span><span class="chip up">▲ our +0.49</span><span class="chip down">▼ strong -0.48</span><span class="chip down">▼ skill -0.44</span></div>
+  <p class="excerpt">Primary Skills Strong technical skills in Statistics, Machine Learning, Deep Learning, Natural Language Processing, or Artificial Intelligence, Chatbot frameworks Strong programming skills Excellent verbal and written communication skills required for interacting with management, clients and peers Ability to clearly summarize methodology and key points of program/report in technical documentation/specifications is also required Secondary Skill Experience with Generative AI, Cloud services (GCP,…</p>
+  <div class="cmd">python -m veridyx.review --record adzuna:5817919130 --decision fraud|legitimate|unclear</div>
+</div><div class="card">
+  <div class="head">
+    <span class="title">Data Scientist</span>
+    <span class="score">0.0555</span>
+  </div>
+  <div class="meta">Team Geek Solutions
+    · Bangalore, Karnataka
+    · <code>adzuna:5819141738</code> · <a href="https://www.adzuna.in/details/5819141738?utm_medium=api&amp;utm_source=5304d241">source</a></div>
+  <div class="contribs"><span class="chip down">▼ analytical -0.84</span><span class="chip up">▲ engineering +0.71</span><span class="chip up">▲ has_salary +0.70</span><span class="chip up">▲ of +0.65</span><span class="chip up">▲ from +0.52</span><span class="chip down">▼ collaborate -0.36</span></div>
+  <p class="excerpt">Position: Data Scientist Notice Period: Immediate Joiner Experience: 5 Years Key Responsibilities  Collect, clean, and preprocess data from diverse sources to ensure quality and accuracy.  Develop and refine statistical models and Machine Learning (ML) algorithms to solve real-world problems.  Collaborate with cross-functional teams (e.g., data engineering, product, and business) to identify and understand analytical needs.  Perform exploratory data analysis (EDA) to uncover patterns, trend…</p>
+  <div class="cmd">python -m veridyx.review --record adzuna:5819141738 --decision fraud|legitimate|unclear</div>
+</div><div class="card">
+  <div class="head">
+    <span class="title">Data Engineer II</span>
+    <span class="score">0.0478</span>
+  </div>
+  <div class="meta">McDonalds in India
+    · Hyderabad, Telangana
+    · <code>adzuna:5828755302</code> · <a href="https://www.adzuna.in/details/5828755302?utm_medium=api&amp;utm_source=5304d241">source</a></div>
+  <div class="contribs"><span class="chip down">▼ engineer -0.97</span><span class="chip up">▲ engineering +0.90</span><span class="chip up">▲ operating +0.63</span><span class="chip up">▲ of +0.59</span><span class="chip down">▼ delivery -0.52</span><span class="chip down">▼ strong -0.41</span></div>
+  <p class="excerpt">Data Engineering II RealTime CDP Position Summary: We are seeking a Data Engineer II preferably Full Stack Engineer, to focus on core data engineering work within our RealTime Customer Data Platform (CDP). This role emphasizes building, testing, and operating data pipelines while developing strong fundamentals in streaming and distributed data systems. Primary Responsibilities: RealTime CDP &amp; Streaming Audience Building &amp; Segmentation Customer Data Schemas &amp; Quality Leadership &amp; Delivery Cross …</p>
+  <div class="cmd">python -m veridyx.review --record adzuna:5828755302 --decision fraud|legitimate|unclear</div>
+</div><div class="card">
+  <div class="head">
+    <span class="title">AWS Data Engineer</span>
+    <span class="score">0.0443</span>
+  </div>
+  <div class="meta">Trigent Software Private Limited
+    · Injambakkam, Chennai
+    · <code>adzuna:5820125860</code> · <a href="https://www.adzuna.in/details/5820125860?utm_medium=api&amp;utm_source=5304d241">source</a></div>
+  <div class="contribs"><span class="chip up">▲ has_salary +0.81</span><span class="chip down">▼ into -0.77</span><span class="chip down">▼ on -0.70</span><span class="chip up">▲ from +0.48</span><span class="chip up">▲ english +0.40</span><span class="chip down">▼ diverse -0.38</span></div>
+  <p class="excerpt">6 years Hands-on expertise in building and managing data pipelines on the AWS platform, with EMR and Apache NiFi as core, essential skills. Design and implement complex data ingestion workflows from diverse data sources into the AWS environment utilizing the full capabilities of Apache NiFi Develop, optimize, and troubleshoot sophisticated data processing jobs on Amazon EMR using frameworks such as Spark, Hive, and potentially others Solid understanding of core AWS data services, including S3, …</p>
+  <div class="cmd">python -m veridyx.review --record adzuna:5820125860 --decision fraud|legitimate|unclear</div>
+</div><div class="card">
+  <div class="head">
+    <span class="title">Data Engineer</span>
+    <span class="score">0.0428</span>
+  </div>
+  <div class="meta">EXL
+    · Haryana, India
+    · <code>adzuna:5818430137</code> · <a href="https://www.adzuna.in/details/5818430137?utm_medium=api&amp;utm_source=5304d241">source</a></div>
+  <div class="contribs"><span class="chip up">▲ engineering +0.65</span><span class="chip up">▲ of +0.53</span><span class="chip up">▲ engineering and +0.49</span><span class="chip down">▼ punctuation_ratio -0.41</span><span class="chip down">▼ collaborate -0.38</span><span class="chip up">▲ resolve +0.37</span></div>
+  <p class="excerpt">Description Data Engineers design and build data systems and pipelines. Responsibilities include developing data processing workflows, optimizing data storage, and ensuring data accuracy. You will collaborate with data scientists and analysts to meet data requirements and resolve data issues. Strong experience in data engineering and problem-solving skills are required. Responsibilities Design and implement data pipelines, Optimize data processing and storage, Ensure data solutions meet perform…</p>
+  <div class="cmd">python -m veridyx.review --record adzuna:5818430137 --decision fraud|legitimate|unclear</div>
+</div><div class="card">
+  <div class="head">
+    <span class="title">Data Engineer</span>
+    <span class="score">0.0419</span>
+  </div>
+  <div class="meta">Trigent Software Private Limited
+    · Chauth Ka Barwara, Sawai Madhopur
+    · <code>adzuna:5820125855</code> · <a href="https://www.adzuna.in/details/5820125855?utm_medium=api&amp;utm_source=5304d241">source</a></div>
+  <div class="contribs"><span class="chip up">▲ has_salary +0.82</span><span class="chip down">▼ into -0.80</span><span class="chip down">▼ on -0.72</span><span class="chip up">▲ from +0.47</span><span class="chip up">▲ english +0.40</span><span class="chip down">▼ diverse -0.38</span></div>
+  <p class="excerpt">6 years Hands-on expertise in building and managing data pipelines on the AWS platform, with EMR and Apache NiFi as core, essential skills. Design and implement complex data ingestion workflows from diverse data sources into the AWS environment utilizing the full capabilities of Apache NiFi Develop, optimize, and troubleshoot sophisticated data processing jobs on Amazon EMR using frameworks such as Spark, Hive, and potentially others Solid understanding of core AWS data services, including S3, …</p>
+  <div class="cmd">python -m veridyx.review --record adzuna:5820125855 --decision fraud|legitimate|unclear</div>
+</div><div class="card">
+  <div class="head">
+    <span class="title">Data Scientist (Fintech / Applied ML)</span>
+    <span class="score">0.0385</span>
+  </div>
+  <div class="meta">HyrEzy Talent Solutions
+    · Bangalore, Karnataka
+    · <code>adzuna:5828584504</code> · <a href="https://www.adzuna.in/details/5828584504?utm_medium=api&amp;utm_source=5304d241">source</a></div>
+  <div class="contribs"><span class="chip down">▼ analytical -1.04</span><span class="chip up">▲ has_salary +0.74</span><span class="chip down">▼ about -0.63</span><span class="chip up">▲ of +0.58</span><span class="chip up">▲ seeking +0.36</span><span class="chip up">▲ from +0.33</span></div>
+  <p class="excerpt">About the Role We are seeking a highly analytical and technically proficient Data Scientist to join our fast-paced Fintech product team. You will leverage statistical analysis, machine learning, and potentially Generative AI to build impactful solutions that drive business outcomes, such as risk modeling, fraud detection, and predictive analytics. This is a high-ownership role where you will take responsibility for projects from initial problem scoping and data discovery through feature enginee…</p>
+  <div class="cmd">python -m veridyx.review --record adzuna:5828584504 --decision fraud|legitimate|unclear</div>
+</div><div class="card">
+  <div class="head">
+    <span class="title">Assistant Vice President - Data Science</span>
+    <span class="score">0.0366</span>
+  </div>
+  <div class="meta">Citigroup
+    · Bangalore, Karnataka
+    · <code>adzuna:5822058287</code> · <a href="https://www.adzuna.in/details/5822058287?utm_medium=api&amp;utm_source=5304d241">source</a></div>
+  <div class="contribs"><span class="chip up">▲ alignment +1.45</span><span class="chip up">▲ assistant +0.75</span><span class="chip down">▼ on -0.69</span><span class="chip up">▲ from +0.48</span><span class="chip up">▲ the +0.39</span><span class="chip up">▲ english +0.39</span></div>
+  <p class="excerpt">Job Overview The Lead AI Engineer is a senior individual contributor and the primary technical owner for complex AI projects. This role focuses on the hands-on architecture and implementation of cutting-edge AI solutions, ensuring technical excellence and alignment with product goals. Responsibilities Primary Responsibilities (60%): Serve as the technical anchor for the development of enterprise-grade, AI-powered solutions, guiding the implementation from a technical perspective. Lead the han…</p>
+  <div class="cmd">python -m veridyx.review --record adzuna:5822058287 --decision fraud|legitimate|unclear</div>
+</div><div class="card">
+  <div class="head">
+    <span class="title">Databricks Engineer, Data Platform &amp; Data Science Tooling</span>
+    <span class="score">0.0324</span>
+  </div>
+  <div class="meta">Magna International, Inc
+    · India
+    · <code>adzuna:5820746413</code> · <a href="https://www.adzuna.in/details/5820746413?utm_medium=api&amp;utm_source=5304d241">source</a></div>
+  <div class="contribs"><span class="chip down">▼ into -0.83</span><span class="chip up">▲ we +0.43</span><span class="chip up">▲ see +0.41</span><span class="chip down">▼ right -0.39</span><span class="chip up">▲ punctuation_ratio +0.36</span><span class="chip up">▲ english +0.36</span></div>
+  <p class="excerpt">We see a future where everyone can live and move without limitations. That&#x27;s why we are developing technologies, systems and concepts that make vehicles safer and cleaner, while serving our communities, the planet and, above all, people. In the right environment, your ideas can turn into industry-changing automotive technologies and improve the lives of people around the world. Let&#x27;s create the future of mobility, together. Job descriptions may display in multiple languages based on your langua…</p>
+  <div class="cmd">python -m veridyx.review --record adzuna:5820746413 --decision fraud|legitimate|unclear</div>
+</div><div class="card">
+  <div class="head">
+    <span class="title">Data Science Instructor - Part Time</span>
+    <span class="score">0.0291</span>
+  </div>
+  <div class="meta">upGrad
+    · Kolkata, West Bengal
+    · <code>adzuna:5823898830</code> · <a href="https://www.adzuna.in/land/ad/5823898830?se=vrbNTzqQ8RGJSr6zDeCjPA&amp;utm_medium=api&amp;utm_source=5304d241&amp;v=9B89184A4F2E05842136656972EFEE9B2669FE3E">source</a></div>
+  <div class="contribs"><span class="chip down">▼ location -0.66</span><span class="chip down">▼ about -0.54</span><span class="chip up">▲ of +0.49</span><span class="chip up">▲ working +0.47</span><span class="chip up">▲ company +0.43</span><span class="chip up">▲ punctuation_ratio +0.36</span></div>
+  <p class="excerpt">Job Title: Part-time Data Science Instructor – Offline Learning Centre Location: Kolkata, West Bengal Employment Type: Part-time Working Schedule: Flexible (Weekdays and weekends based on batch schedules) About upGrad Founded in 2015, upGrad is Asia&#x27;s largest integrated Learning, Skilling, Workforce Development, and Placement company. Its offerings include online and hybrid degrees, study abroad programs, certifications, bootcamps, and doctorates for working professionals. Through its B2B arm, …</p>
+  <div class="cmd">python -m veridyx.review --record adzuna:5823898830 --decision fraud|legitimate|unclear</div>
+</div><div class="card">
+  <div class="head">
+    <span class="title">Senior Data Engineer Consultant</span>
+    <span class="score">0.0286</span>
+  </div>
+  <div class="meta">DiligenceVault
+    · India
+    · <code>adzuna:5828061566</code> · <a href="https://www.adzuna.in/details/5828061566?utm_medium=api&amp;utm_source=5304d241">source</a></div>
+  <div class="contribs"><span class="chip up">▲ engineering +1.13</span><span class="chip down">▼ engineer -0.93</span><span class="chip up">▲ engineering and +0.56</span><span class="chip down">▼ location -0.56</span><span class="chip up">▲ 10 years +0.53</span><span class="chip down">▼ about -0.51</span></div>
+  <p class="excerpt">Job title: Senior Data Engineering Consultant -Platform Architecture &amp; AI-Native Data Strategy Engagement type: Contract / Consulting (3–6 months with ongoing advisory) Location: Remote (reasonable 3-4 hrs overlap with US working hours required) Experience: 8-10 years in data engineering and data platform architecture About DiligenceVault DiligenceVault is an enterprise B2B SaaS platform that helps institutional investors, asset managers, consultants, and fund service providers digitize and aut…</p>
+  <div class="cmd">python -m veridyx.review --record adzuna:5828061566 --decision fraud|legitimate|unclear</div>
+</div><div class="card">
+  <div class="head">
+    <span class="title">Senior Data Engineer</span>
+    <span class="score">0.0281</span>
+  </div>
+  <div class="meta">Showtime Consulting
+    · India
+    · <code>adzuna:5826721917</code> · <a href="https://www.adzuna.in/details/5826721917?utm_medium=api&amp;utm_source=5304d241">source</a></div>
+  <div class="contribs"><span class="chip up">▲ engineering +0.83</span><span class="chip up">▲ we +0.60</span><span class="chip down">▼ digital -0.54</span><span class="chip up">▲ engineering and +0.50</span><span class="chip down">▼ new -0.42</span><span class="chip up">▲ english +0.39</span></div>
+  <p class="excerpt">Company Description Showtime Consulting is a leading provider of Shielded Cloud and Digital Solutions across Australia and New Zealand. We specialise in delivering secure, enterprise-scale technology solutions across cloud, data, DevSecOps, platform engineering, and digital transformation programs. We partner with major organisations to build high-performing technology teams and deliver innovative data and cloud solutions that enable better decision-making, operational efficiency, and business …</p>
+  <div class="cmd">python -m veridyx.review --record adzuna:5826721917 --decision fraud|legitimate|unclear</div>
+</div><div class="card">
+  <div class="head">
+    <span class="title">Data Scientist</span>
+    <span class="score">0.0257</span>
+  </div>
+  <div class="meta">Kyndryl
+    · Bangalore, Karnataka
+    · <code>adzuna:5826344249</code> · <a href="https://www.adzuna.in/details/5826344249?utm_medium=api&amp;utm_source=5304d241">source</a></div>
+  <div class="contribs"><span class="chip up">▲ we +0.52</span><span class="chip up">▲ data +0.39</span><span class="chip up">▲ english +0.39</span><span class="chip up">▲ punctuation_ratio +0.37</span><span class="chip up">▲ flexible +0.33</span><span class="chip down">▼ doing -0.29</span></div>
+  <p class="excerpt">Who We Are At Kyndryl, we run and reimagine the mission-critical technology systems that drive advantage for the world&#x27;s leading businesses. We are at the heart of progress; with proven expertise and a continuous flow of AI-powered insight, enabling smarter decisions, faster innovation, and a lasting competitive edge. For our people-Kyndryls-that means doing purposeful work that powers human progress. Join us and experience a flexible, supportive environment where your well-being is prioritized…</p>
+  <div class="cmd">python -m veridyx.review --record adzuna:5826344249 --decision fraud|legitimate|unclear</div>
+</div>
+</div></body></html>

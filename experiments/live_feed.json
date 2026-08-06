@@ -1,0 +1,37 @@
+{
+  "n_postings": 1006,
+  "threshold": 0.9757510801837531,
+  "threshold_rationale": "largest flag set fitting 50 reviews",
+  "n_flagged": 0,
+  "flag_rate": 0.0,
+  "score_quantiles": {
+    "50": 0.000308662275651303,
+    "75": 0.0014933164151964707,
+    "90": 0.006820005717900269,
+    "95": 0.010455067019188071,
+    "99": 0.04419874926781472
+  },
+  "by_source": {
+    "adzuna": {
+      "n": 421,
+      "n_flagged": 0,
+      "mean_score": 0.008092676230425203
+    },
+    "ashby": {
+      "n": 97,
+      "n_flagged": 0,
+      "mean_score": 0.0009263063215900893
+    },
+    "greenhouse": {
+      "n": 480,
+      "n_flagged": 0,
+      "mean_score": 0.0004423689372351388
+    },
+    "lever": {
+      "n": 8,
+      "n_flagged": 0,
+      "mean_score": 0.00018591661446405307
+    }
+  },
+  "model_version": "lightgbm-portable-v1"
+}
