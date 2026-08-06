@@ -1,0 +1,44 @@
+{
+  "rows": [
+    {
+      "model": "lightgbm",
+      "regime": "full",
+      "grouped_pr_auc": 0.8828934032759782,
+      "naive_pr_auc": 0.9078910847524729,
+      "pr_auc_inflation": 0.025,
+      "grouped_f1": 0.7894736842105263,
+      "naive_f1": 0.8307692307692308,
+      "f1_inflation": 0.0413
+    },
+    {
+      "model": "tfidf-lr",
+      "regime": "full",
+      "grouped_pr_auc": 0.8576795763639964,
+      "naive_pr_auc": 0.9050967596749713,
+      "pr_auc_inflation": 0.0474,
+      "grouped_f1": 0.801526717557252,
+      "naive_f1": 0.8286852589641435,
+      "f1_inflation": 0.0272
+    },
+    {
+      "model": "lightgbm",
+      "regime": "portable",
+      "grouped_pr_auc": 0.7726604357383474,
+      "naive_pr_auc": 0.8444917967860828,
+      "pr_auc_inflation": 0.0718,
+      "grouped_f1": 0.7,
+      "naive_f1": 0.7604562737642585,
+      "f1_inflation": 0.0605
+    },
+    {
+      "model": "tfidf-lr",
+      "regime": "portable",
+      "grouped_pr_auc": 0.7584350389971445,
+      "naive_pr_auc": 0.8195052373332848,
+      "pr_auc_inflation": 0.0611,
+      "grouped_f1": 0.7107438016528926,
+      "naive_f1": 0.7578125000000001,
+      "f1_inflation": 0.0471
+    }
+  ]
+}

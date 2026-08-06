@@ -1,0 +1,207 @@
+{
+  "costs": {
+    "false_negative": 40000.0,
+    "false_positive": 200.0,
+    "ratio": 200.0
+  },
+  "n": 2554,
+  "n_fraud": 133,
+  "chosen": {
+    "minimum_expected_cost": {
+      "threshold": 0.0006274095085782364,
+      "rationale": "minimises expected cost at FN=40,000 / FP=200 (ratio 200:1)",
+      "expected_cost": 254200.0,
+      "caught": 130,
+      "missed": 3,
+      "false_alarms": 671,
+      "flagged": 801,
+      "precision": 0.16229712858926343,
+      "recall": 0.9774436090225563
+    },
+    "review_capacity": {
+      "threshold": 0.9656873469959303,
+      "rationale": "largest flag set fitting 50 reviews",
+      "expected_cost": 3960000.0,
+      "caught": 34,
+      "missed": 99,
+      "false_alarms": 0,
+      "flagged": 34,
+      "precision": 1.0,
+      "recall": 0.2556390977443609
+    }
+  },
+  "reference_points": {
+    "flag_everything": {
+      "threshold": 0.0,
+      "rationale": "flag everything (the do-nothing-clever baseline)",
+      "expected_cost": 484200.0,
+      "caught": 133,
+      "missed": 0,
+      "false_alarms": 2421,
+      "flagged": 2554,
+      "precision": 0.05207517619420517,
+      "recall": 1.0
+    },
+    "flag_nothing": {
+      "threshold": 1.000000001,
+      "rationale": "flag nothing (95% accurate, catches nothing)",
+      "expected_cost": 5320000.0,
+      "caught": 0,
+      "missed": 133,
+      "false_alarms": 0,
+      "flagged": 0,
+      "precision": 0.0,
+      "recall": 0.0
+    }
+  },
+  "cost_sweep": [
+    {
+      "fn_fp_ratio": 1.0,
+      "threshold": 0.4378930856519762,
+      "flagged": 90,
+      "caught": 80,
+      "missed": 53,
+      "false_alarms": 10,
+      "precision": 0.8889,
+      "recall": 0.6015
+    },
+    {
+      "fn_fp_ratio": 5.0,
+      "threshold": 0.02927604846475433,
+      "flagged": 190,
+      "caught": 104,
+      "missed": 29,
+      "false_alarms": 86,
+      "precision": 0.5474,
+      "recall": 0.782
+    },
+    {
+      "fn_fp_ratio": 10.0,
+      "threshold": 0.02927604846475433,
+      "flagged": 190,
+      "caught": 104,
+      "missed": 29,
+      "false_alarms": 86,
+      "precision": 0.5474,
+      "recall": 0.782
+    },
+    {
+      "fn_fp_ratio": 25.0,
+      "threshold": 0.0011515609810229558,
+      "flagged": 658,
+      "caught": 128,
+      "missed": 5,
+      "false_alarms": 530,
+      "precision": 0.1945,
+      "recall": 0.9624
+    },
+    {
+      "fn_fp_ratio": 50.0,
+      "threshold": 0.0011515609810229558,
+      "flagged": 658,
+      "caught": 128,
+      "missed": 5,
+      "false_alarms": 530,
+      "precision": 0.1945,
+      "recall": 0.9624
+    },
+    {
+      "fn_fp_ratio": 100.0,
+      "threshold": 0.0006274095085782364,
+      "flagged": 801,
+      "caught": 130,
+      "missed": 3,
+      "false_alarms": 671,
+      "precision": 0.1623,
+      "recall": 0.9774
+    },
+    {
+      "fn_fp_ratio": 200.0,
+      "threshold": 0.0006274095085782364,
+      "flagged": 801,
+      "caught": 130,
+      "missed": 3,
+      "false_alarms": 671,
+      "precision": 0.1623,
+      "recall": 0.9774
+    },
+    {
+      "fn_fp_ratio": 500.0,
+      "threshold": 3.735499538049906e-05,
+      "flagged": 1853,
+      "caught": 133,
+      "missed": 0,
+      "false_alarms": 1720,
+      "precision": 0.0718,
+      "recall": 1.0
+    },
+    {
+      "fn_fp_ratio": 1000.0,
+      "threshold": 3.735499538049906e-05,
+      "flagged": 1853,
+      "caught": 133,
+      "missed": 0,
+      "false_alarms": 1720,
+      "precision": 0.0718,
+      "recall": 1.0
+    }
+  ],
+  "capacity_sweep": [
+    {
+      "capacity": 10,
+      "threshold": 0.999493644889793,
+      "flagged": 10,
+      "caught": 10,
+      "missed": 123,
+      "precision": 1.0,
+      "recall": 0.0752
+    },
+    {
+      "capacity": 25,
+      "threshold": 0.9913764473259646,
+      "flagged": 25,
+      "caught": 25,
+      "missed": 108,
+      "precision": 1.0,
+      "recall": 0.188
+    },
+    {
+      "capacity": 50,
+      "threshold": 0.9656873469959303,
+      "flagged": 34,
+      "caught": 34,
+      "missed": 99,
+      "precision": 1.0,
+      "recall": 0.2556
+    },
+    {
+      "capacity": 100,
+      "threshold": 0.3873276934984605,
+      "flagged": 100,
+      "caught": 83,
+      "missed": 50,
+      "precision": 0.83,
+      "recall": 0.6241
+    },
+    {
+      "capacity": 200,
+      "threshold": 0.025728768198333096,
+      "flagged": 199,
+      "caught": 104,
+      "missed": 29,
+      "precision": 0.5226,
+      "recall": 0.782
+    },
+    {
+      "capacity": 500,
+      "threshold": 0.0028717012986236297,
+      "flagged": 500,
+      "caught": 119,
+      "missed": 14,
+      "precision": 0.238,
+      "recall": 0.8947
+    }
+  ],
+  "model": "lightgbm",
+  "regime": "portable"
+}

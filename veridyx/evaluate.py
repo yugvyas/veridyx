@@ -41,6 +41,7 @@ from veridyx.data import ROOT, prepare
 from veridyx.features import FeatureSet
 from veridyx.models.base import Model
 from veridyx.models.baseline import TfidfLogisticRegression
+from veridyx.models.bert import DistilBertClassifier
 from veridyx.models.gbm import GradientBoosting
 from veridyx.splits import TEST, TRAIN, VAL
 
@@ -52,7 +53,13 @@ RESULTS_FILE = EXPERIMENTS_DIR / "results.json"
 MODEL_FACTORIES: dict[str, type[Model]] = {
     TfidfLogisticRegression.name: TfidfLogisticRegression,
     GradientBoosting.name: GradientBoosting,
+    DistilBertClassifier.name: DistilBertClassifier,
 }
+
+# The two classic models train in seconds; DistilBERT takes tens of minutes per cell.
+# The default matrix is the fast pair so that iterating on metrics or splits does not
+# cost an hour. `--models distilbert` or `--all` opts into the full comparison.
+FAST_MODELS = [TfidfLogisticRegression.name, GradientBoosting.name]
 
 
 # --------------------------------------------------------------------------------
@@ -201,7 +208,7 @@ def run_matrix(
     split_kinds: list[str] | None = None,
 ) -> list[RunResult]:
     """Every (model x regime x split) cell, from one shared dataset preparation."""
-    models = models or list(MODEL_FACTORIES)
+    models = models or FAST_MODELS
     regimes = regimes or list(feat.REGIMES)
     split_kinds = split_kinds or ["grouped", "naive"]
 
@@ -291,15 +298,45 @@ def regime_gap(results: list[RunResult]) -> list[dict]:
 
 
 def write_results(results: list[RunResult], path: Path | None = None) -> Path:
+    """Merge into the results file, keyed by (model, regime, split).
+
+    Merging rather than overwriting is what makes the slow model practical: DistilBERT
+    can be run on its own hours after the fast pair without discarding their numbers.
+    A re-run of an existing cell replaces it, so the file always holds the most recent
+    result for each cell rather than an append-only history.
+    """
     path = path or RESULTS_FILE
     path.parent.mkdir(parents=True, exist_ok=True)
+
+    merged: dict[tuple[str, str, str], dict] = {}
+    if path.exists():
+        for run in json.loads(path.read_text()).get("runs", []):
+            merged[(run["model"], run["regime"], run["split_kind"])] = run
+    for r in results:
+        merged[(r.model, r.regime, r.split_kind)] = r.to_json()
+
+    runs = sorted(merged.values(), key=lambda r: (r["regime"], r["split_kind"], r["model"]))
+    # The comparison tables are recomputed from the merged set, not just this batch,
+    # so a partial re-run cannot leave the summaries describing a subset of the runs.
+    rehydrated = [
+        RunResult(
+            model=r["model"],
+            regime=r["regime"],
+            split_kind=r["split_kind"],
+            seed=r["seed"],
+            test=r["test"],
+            validation=r["validation"],
+            train_seconds=r["train_seconds"],
+        )
+        for r in runs
+    ]
     payload = {
-        "runs": [r.to_json() for r in results],
-        "leakage_delta": leakage_delta(results),
-        "regime_gap": regime_gap(results),
+        "runs": runs,
+        "leakage_delta": leakage_delta(rehydrated),
+        "regime_gap": regime_gap(rehydrated),
     }
     path.write_text(json.dumps(payload, indent=2) + "\n")
-    log.info("wrote %s", path)
+    log.info("wrote %s (%d cells)", path, len(runs))
     return path
 
 
@@ -335,6 +372,11 @@ def _print_table(results: list[RunResult]) -> None:
 def _main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Run the Veridyx evaluation matrix.")
     parser.add_argument("--models", nargs="*", choices=list(MODEL_FACTORIES))
+    parser.add_argument(
+        "--all",
+        action="store_true",
+        help="include DistilBERT (slow: tens of minutes per cell)",
+    )
     parser.add_argument("--regimes", nargs="*", choices=list(feat.REGIMES))
     parser.add_argument("--splits", nargs="*", choices=["grouped", "naive"])
     parser.add_argument("--seed", type=int, default=0)
@@ -343,9 +385,10 @@ def _main(argv: list[str] | None = None) -> int:
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
+    models = args.models or (list(MODEL_FACTORIES) if args.all else None)
     results = run_matrix(
         seed=args.seed,
-        models=args.models,
+        models=models,
         regimes=args.regimes,
         split_kinds=args.splits,
     )

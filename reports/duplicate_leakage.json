@@ -1,0 +1,25 @@
+{
+  "labels": [
+    "All postings",
+    "Fraudulent",
+    "Legitimate"
+  ],
+  "values": [
+    0.339,
+    0.4677,
+    0.3324
+  ],
+  "source": {
+    "n_documents": 17880,
+    "n_clusters": 13327,
+    "n_in_multi_document_clusters": 6061,
+    "confirmed_pairs": 4553,
+    "duplicate_share_overall": 0.339,
+    "duplicate_share_fraudulent": 0.4677,
+    "duplicate_share_legitimate": 0.3324,
+    "n_fraudulent_with_duplicate": 405,
+    "n_fraudulent": 866,
+    "largest_cluster_size": 405,
+    "threshold": 0.8
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "metric": "pr_auc",
+  "split": "grouped",
+  "values": {
+    "lightgbm/full": 0.8828934032759782,
+    "lightgbm/portable": 0.7726604357383474,
+    "tfidf-lr/full": 0.8576795763639964,
+    "tfidf-lr/portable": 0.7584350389971445
+  },
+  "regime_gap": [
+    {
+      "model": "lightgbm",
+      "full_pr_auc": 0.8828934032759782,
+      "portable_pr_auc": 0.7726604357383474,
+      "benchmark_only_advantage": 0.1102,
+      "full_f1": 0.7894736842105263,
+      "portable_f1": 0.7
+    },
+    {
+      "model": "tfidf-lr",
+      "full_pr_auc": 0.8576795763639964,
+      "portable_pr_auc": 0.7584350389971445,
+      "benchmark_only_advantage": 0.0992,
+      "full_f1": 0.801526717557252,
+      "portable_f1": 0.7107438016528926
+    }
+  ]
+}
