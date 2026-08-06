@@ -11,3 +11,8 @@ shap~=0.51
 matplotlib~=3.11
 pydantic~=2.13
 datasets~=5.0
+
+# The hosted endpoint. Streamlit Community Cloud installs from this file, so the
+# serving dependency belongs here rather than in a separate serve/requirements.txt
+# it would never read.
+streamlit~=1.61

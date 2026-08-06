@@ -1,7 +1,0 @@
-# The Space installs Veridyx itself from GitHub, so the scoring path on the endpoint is
-# the same code the results table was computed from. Pinning to a release tag would be
-# stricter still; main is used while the repository is pre-release.
-git+https://github.com/yugvyas/veridyx@main
-
-# Pinned to the version the app was actually tested against, not a guessed one.
-gradio~=6.22

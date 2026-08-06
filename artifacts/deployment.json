@@ -1,0 +1,26 @@
+{
+  "model_version": "lightgbm-portable-v1",
+  "artifact": "lightgbm-portable.pkl",
+  "regime": "portable",
+  "split": "grouped",
+  "seed": 0,
+  "operating_threshold": 0.9757510801837531,
+  "threshold_rationale": "largest flag set fitting 50 reviews",
+  "review_capacity": 50,
+  "alternative_threshold_minimum_cost": {
+    "threshold": 6.856494151109548e-05,
+    "rationale": "minimises expected cost at FN=40,000 / FP=200 (ratio 200:1)"
+  },
+  "test_metrics_at_operating_threshold": {
+    "pr_auc": 0.7726604357383474,
+    "precision": 1.0,
+    "recall": 0.24812030075187969,
+    "f1": 0.3975903614457831,
+    "true_positives": 33,
+    "false_positives": 0,
+    "false_negatives": 100,
+    "n": 2554,
+    "n_positive": 133
+  },
+  "training_rows": 12648
+}

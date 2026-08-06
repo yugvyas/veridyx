@@ -1,66 +1,30 @@
----
-title: Veridyx
-emoji: 🛡️
-colorFrom: blue
-colorTo: gray
-sdk: gradio
-sdk_version: 6.22.0
-app_file: app.py
-pinned: false
-license: mit
----
+# serve/
 
-# Veridyx — fraudulent job posting detection
+The hosted inference endpoint.
 
-Scores a job posting for signs of employment fraud and shows the features behind the
-score. Source: [github.com/yugvyas/veridyx](https://github.com/yugvyas/veridyx).
+- `scoring.py` — framework-agnostic scoring. Loads the committed artifact from
+  `artifacts/`, returns a full `Verdict` (score, decision, SHAP contributions, model
+  version). Never trains on startup.
+- The UI lives at `streamlit_app.py` in the repository root, because Streamlit
+  Community Cloud looks for it there.
 
-## What is served here
+## Why Streamlit rather than Hugging Face Spaces
 
-The **portable** LightGBM model. That is not a fallback from the transformer — it is
-the only model in the comparison that can be both served and explained:
+This was built for HF Spaces first. Partway through, HF moved Gradio and Docker Spaces
+behind a PRO subscription — only static Spaces remain free — so the endpoint moved to
+Streamlit Community Cloud, which is free and deploys from this repository directly.
 
-- **DistilBERT** is the ceiling check. It has no attribution path, so a flag it raised
-  could not be defended to a reviewer.
-- The **FULL** model reaches a higher benchmark score (PR-AUC 0.883 vs 0.773) but does
-  so using EMSCAD columns — `company_profile`, `has_company_logo`, `benefits` — that no
-  live feed or API caller can supply. It is unservable by construction.
+Because scoring was already separated from presentation, that change cost a UI rewrite
+and touched no scoring logic. `serve/scoring.py` is byte-identical across the move.
 
-That ~0.11 PR-AUC gap is the honest cost of deployability, and it is measured rather
-than glossed over.
+## Running locally
 
-## Reading the output
+    .venv/bin/streamlit run streamlit_app.py
 
-Every response is a `Verdict`: the score, the decision against the operating threshold,
-the SHAP contributions that produced it, and the model version. The threshold is chosen
-for a review desk of ~50 postings/day, so it is deliberately conservative — on the
-held-out test fold it flags 33 postings with **zero false alarms** and misses 100. A
-different review capacity implies a different threshold; that trade-off is the design,
-not a defect.
+## What is served
 
-## Known limitations, stated plainly
-
-- Trained on EMSCAD (2012-2014, US-centric). Against a live Indian job feed the score
-  distribution shifts significantly (PSI 0.41), so scores on current non-US postings
-  are not comparable to the published metrics.
-- The model has learned some brittle text features. `work from` was learned from "work
-  from home" and fires on a legitimate "Work From Office"; fintech vocabulary (`money`,
-  `income`) overlaps with scam vocabulary.
-- **This is a screening aid, not a verdict.** It is built to route postings to a human
-  reviewer, and every deployment assumption in the repository is built around that.
-
-## API
-
-```python
-from gradio_client import Client
-
-client = Client("yugvyas/veridyx")
-client.predict(
-    "Work From Home Data Entry",   # title
-    "Earn $5000/week, no experience, wire transfer...",  # description
-    "",                            # location
-    True,                          # is_remote
-    False,                         # has_salary
-    api_name="/score",
-)
-```
+The PORTABLE LightGBM model — the only model in the comparison that can be both served
+and explained. DistilBERT is the ceiling check and has no attribution path; the FULL
+model reaches a higher benchmark score (PR-AUC 0.883 vs 0.773) using EMSCAD columns
+that no live feed provides, so it is unservable by construction. That ~0.11 PR-AUC gap
+is the measured cost of deployability.

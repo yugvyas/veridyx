@@ -143,6 +143,7 @@ python3.11 -m venv .venv
 .venv/bin/python -m veridyx.threshold --sweep
 .venv/bin/python -m veridyx.report            # regenerate every figure
 .venv/bin/python -m veridyx.stats             # regenerate the block above
+.venv/bin/streamlit run streamlit_app.py      # the endpoint, locally
 
 .venv/bin/pytest                              # bare pytest, not python -m pytest
 ```
