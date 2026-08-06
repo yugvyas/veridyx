@@ -1,9 +1,15 @@
 name: ci
 
-on:
+# `on` is quoted because YAML 1.1 treats bare `on` as the boolean true. GitHub's own
+# parser handles the bare form, and the bare form did parse here — workflow_dispatch
+# fired from it — but pushes to main produced no runs at all despite GitHub logging
+# the PushEvents. Quoting removes the one ambiguity that is ours to remove; if pushes
+# still do not trigger, the cause is upstream and not in this file.
+"on":
   push:
     branches: [main]
   pull_request:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
