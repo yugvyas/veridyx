@@ -1,5 +1,7 @@
 # Veridyx
 
+[![ci](https://github.com/yugvyas/veridyx/actions/workflows/ci.yml/badge.svg)](https://github.com/yugvyas/veridyx/actions/workflows/ci.yml)
+
 **Fraudulent job posting detection, evaluated honestly and deployed against a live feed.**
 
 Submitted to ML Bubble 2026 (TE-BE Advanced Track). Sibling to
