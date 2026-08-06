@@ -1,0 +1,26 @@
+{
+  "mirror": "victor/real-or-fake-fake-jobposting-prediction",
+  "sha256": "9e7d6a641a66e51d63e4e16bf8073fe82a366ed6b58c29e5a2acc64c103a458f",
+  "rows": 17880,
+  "fraudulent": 866,
+  "columns": [
+    "benefits",
+    "company_profile",
+    "department",
+    "description",
+    "employment_type",
+    "fraudulent",
+    "function",
+    "has_company_logo",
+    "has_questions",
+    "industry",
+    "job_id",
+    "location",
+    "required_education",
+    "required_experience",
+    "requirements",
+    "salary_range",
+    "telecommuting",
+    "title"
+  ]
+}

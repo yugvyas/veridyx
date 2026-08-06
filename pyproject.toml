@@ -1,0 +1,36 @@
+[project]
+name = "veridyx"
+version = "0.1.0"
+description = "Fraudulent job posting detection, evaluated honestly and deployed against a live feed"
+requires-python = ">=3.11,<3.14"
+
+[tool.ruff]
+line-length = 92
+target-version = "py311"
+exclude = [".venv", "reports", "artifacts"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle
+    "F",   # pyflakes
+    "I",   # isort
+    "UP",  # pyupgrade
+    "B",   # bugbear
+    "SIM", # simplify
+    "RUF",
+]
+ignore = [
+    "E501",  # line length is handled by the formatter
+    "B008",  # argparse/pydantic idioms rely on calls in defaults
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B011"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+# Required so a bare `pytest` can import `veridyx`. Running `python -m pytest`
+# happens to work without this because that form puts the CWD on sys.path —
+# which is exactly how this class of bug stays hidden locally while failing in CI.
+pythonpath = ["."]

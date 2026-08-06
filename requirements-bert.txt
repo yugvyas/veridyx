@@ -1,0 +1,6 @@
+# Kept out of requirements.txt on purpose: torch is a ~1 GB install and only the
+# DistilBERT ceiling-check needs it. The baseline, the GBM, the endpoint and the
+# quantyx bridge all run without it.
+-r requirements.txt
+torch~=2.5
+transformers~=4.46

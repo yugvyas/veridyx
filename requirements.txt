@@ -1,0 +1,13 @@
+# Pinned to the versions that actually produced the committed results. A submission
+# whose numbers cannot be reproduced from a clean clone is a submission with no
+# numbers, so these are compatible-release pins against what is installed, not
+# aspirational ranges.
+numpy~=2.4
+pandas~=3.0
+scipy~=1.17
+scikit-learn~=1.9
+lightgbm~=4.7
+shap~=0.51
+matplotlib~=3.11
+pydantic~=2.13
+datasets~=5.0
