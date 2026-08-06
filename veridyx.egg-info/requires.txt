@@ -1,10 +1,8 @@
-numpy<3,>=1.26
+numpy<3,>=2.0
 pandas<4,>=2.2
 scipy<2,>=1.14
 scikit-learn<2,>=1.5
 lightgbm<5,>=4.5
-shap<1,>=0.46
-matplotlib<4,>=3.9
 pydantic<3,>=2.10
 
 [bert]
@@ -13,3 +11,6 @@ transformers<6,>=4.46
 
 [data]
 datasets<6,>=3.2
+
+[figures]
+matplotlib<4,>=3.9

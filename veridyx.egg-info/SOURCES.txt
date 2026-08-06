@@ -5,6 +5,7 @@ tests/test_evaluate.py
 tests/test_explain.py
 tests/test_features.py
 tests/test_schema.py
+tests/test_scoring.py
 tests/test_splits.py
 tests/test_threshold.py
 veridyx/__init__.py

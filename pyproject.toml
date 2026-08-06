@@ -6,27 +6,31 @@ build-backend = "setuptools.build_meta"
 name = "veridyx"
 version = "0.1.0"
 description = "Fraudulent job posting detection, evaluated honestly and deployed against a live feed"
-requires-python = ">=3.11,<3.14"
+# 3.14 is included because the deployment target runs it. Excluding it here while
+# Streamlit Community Cloud ran 3.14.7 gave the resolver an unsatisfiable constraint,
+# and it backtracked to a numba from 2021 that cannot build on any modern Python —
+# taking the endpoint down with an error that named numba rather than this line.
+requires-python = ">=3.11,<3.15"
 license = "MIT"
 
-# Declared here, not only in requirements.txt, because the Hugging Face Space installs
-# this package with `pip install git+https://github.com/yugvyas/veridyx` — a plain
-# requirements.txt is invisible to that. torch/transformers are deliberately absent:
-# the endpoint serves the GBM and must not pull a 1 GB dependency it never imports.
+# Runtime only. Every entry here is imported by the serving path; anything else is a
+# way for a deploy to fail. `shap` was listed and imported nowhere — the attribution
+# code uses LightGBM's native TreeSHAP (see veridyx/explain.py) — and it was the sole
+# reason numba and llvmlite were ever resolved.
 dependencies = [
-    "numpy>=1.26,<3",
+    "numpy>=2.0,<3",
     "pandas>=2.2,<4",
     "scipy>=1.14,<2",
     "scikit-learn>=1.5,<2",
     "lightgbm>=4.5,<5",
-    "shap>=0.46,<1",
-    "matplotlib>=3.9,<4",
     "pydantic>=2.10,<3",
 ]
 
 [project.optional-dependencies]
 # Fetching the raw dataset; not needed to serve a trained model.
 data = ["datasets>=3.2,<6"]
+# Generating the report figures.
+figures = ["matplotlib>=3.9,<4"]
 # The DistilBERT ceiling check.
 bert = ["torch>=2.5,<3", "transformers>=4.46,<6"]
 

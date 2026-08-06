@@ -1,18 +1,17 @@
-# Pinned to the versions that actually produced the committed results. A submission
-# whose numbers cannot be reproduced from a clean clone is a submission with no
-# numbers, so these are compatible-release pins against what is installed, not
-# aspirational ranges.
-numpy~=2.4
-pandas~=3.0
-scipy~=1.17
-scikit-learn~=1.9
-lightgbm~=4.7
-shap~=0.51
-matplotlib~=3.11
-pydantic~=2.13
-datasets~=5.0
-
-# The hosted endpoint. Streamlit Community Cloud installs from this file, so the
-# serving dependency belongs here rather than in a separate serve/requirements.txt
-# it would never read.
-streamlit~=1.61
+# Runtime dependencies for the deployed endpoint, and nothing else.
+#
+# Streamlit Community Cloud installs from this file into a Python 3.14 environment.
+# Anything listed here that the app does not import is not merely dead weight — it is
+# a way for the deploy to fail. `shap` was listed here and imported nowhere: the
+# attribution code uses LightGBM's native TreeSHAP directly (see veridyx/explain.py).
+# It dragged in numba and llvmlite, whose resolvable versions on Python 3.14 refuse to
+# build, and that alone took the endpoint down.
+#
+# Tooling for experiments, figures and data fetching lives in requirements-dev.txt.
+numpy>=2.0,<3
+pandas>=2.2,<4
+scipy>=1.14,<2
+scikit-learn>=1.5,<2
+lightgbm>=4.5,<5
+pydantic>=2.10,<3
+streamlit>=1.50,<2
