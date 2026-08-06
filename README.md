@@ -41,13 +41,16 @@ Grouped split, held-out test fold. Thresholds chosen on validation.
 | --- | --- | ---: | ---: | ---: | ---: |
 | lightgbm | full | 0.8829 | 0.7895 | 0.7895 | 0.7895 |
 | tfidf-lr | full | 0.8577 | 0.8015 | 0.8140 | 0.7895 |
+| distilbert | full | 0.7453 | 0.7265 | 0.7946 | 0.6692 |
 | lightgbm | portable | 0.7727 | 0.7000 | 0.7165 | 0.6842 |
 | tfidf-lr | portable | 0.7584 | 0.7107 | 0.7890 | 0.6466 |
+| distilbert | portable | 0.7183 | 0.6696 | 0.8085 | 0.5714 |
 
 **What the benchmark-only columns are worth.** PR-AUC lost when the fields no live feed provides are removed:
 
 | model | FULL | PORTABLE | difference |
 | --- | ---: | ---: | ---: |
+| distilbert | 0.7453 | 0.7183 | **+0.0270** |
 | lightgbm | 0.8829 | 0.7727 | **+0.1102** |
 | tfidf-lr | 0.8577 | 0.7584 | **+0.0992** |
 
@@ -125,10 +128,29 @@ veridyx/
   review.py      explained HTML review sheet + verdict log
   train.py       produces the deployable artifact
   adapters/      quantyx live-feed bridge
-serve/           Gradio endpoint for Hugging Face Spaces
+  stats.py       regenerates the results block above
+serve/           framework-agnostic scoring for the endpoint
+streamlit_app.py the hosted endpoint (Streamlit Community Cloud)
 reports/         generated figures — every one has a JSON sidecar
 experiments/     committed results the README and figures read from
 ```
+
+## On DistilBERT
+
+The transformer loses to both classic models, on both regimes, at roughly 300x the
+training cost. That is the reported result rather than a footnote.
+
+Two caveats belong with it, because they bound the claim:
+
+- **It sees text only.** LightGBM consumes the text *and* the engineered feature block;
+  DistilBERT consumes only the text. So this compares a text-only transformer against
+  text-plus-metadata trees, which is how both are normally deployed, but it is not a
+  pure architecture comparison.
+- **256 tokens, 3 epochs, no hyperparameter search.** EMSCAD descriptions run to several
+  thousand characters, so roughly the first third is seen.
+
+The claim is "DistilBERT out of the box loses to TF-IDF here", not "transformers cannot
+work on this task".
 
 ## Reproducing
 

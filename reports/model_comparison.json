@@ -2,12 +2,22 @@
   "metric": "pr_auc",
   "split": "grouped",
   "values": {
+    "distilbert/full": 0.74530401936998,
+    "distilbert/portable": 0.718339772477681,
     "lightgbm/full": 0.8828934032759782,
     "lightgbm/portable": 0.7726604357383474,
     "tfidf-lr/full": 0.8576795763639964,
     "tfidf-lr/portable": 0.7584350389971445
   },
   "regime_gap": [
+    {
+      "model": "distilbert",
+      "full_pr_auc": 0.74530401936998,
+      "portable_pr_auc": 0.718339772477681,
+      "benchmark_only_advantage": 0.027,
+      "full_f1": 0.726530612244898,
+      "portable_f1": 0.6696035242290749
+    },
     {
       "model": "lightgbm",
       "full_pr_auc": 0.8828934032759782,
