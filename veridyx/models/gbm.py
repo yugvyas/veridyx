@@ -1,13 +1,22 @@
 """LightGBM over TF-IDF terms plus the hand-crafted metadata features.
 
-Expected to be the best cost/performance point in the comparison, and the easiest to
-explain: TreeExplainer gives exact SHAP values in reasonable time, so every flag this
-model raises comes with a defensible per-posting reason.
+The best-performing model in the comparison, and the easiest to explain: TreeExplainer
+gives exact SHAP values in reasonable time, so every flag this model raises comes with
+a defensible per-posting reason.
 
-The TF-IDF vocabulary is capped far below the baseline's (2,000 vs 50,000) on purpose.
-Trees handle wide sparse text poorly, and — more importantly for this project — SHAP
-over 50,000 columns produces an explanation nobody can read. A deck slide showing the
-five terms that drove a decision is worth more than a marginal AUC point.
+**On the vocabulary size.** This started at 2,000 terms, on the reasoning that trees
+handle wide sparse text poorly and that SHAP over a large vocabulary is unreadable.
+Measured on the portable/grouped cell, that reasoning cost real accuracy:
+
+    max_features=2,000   PR-AUC 0.7271
+    max_features=10,000  PR-AUC 0.7529
+    max_features=30,000  PR-AUC 0.7727
+
+At 2,000 the GBM lost to TF-IDF + logistic regression (0.7584); at 30,000 it wins. The
+legibility argument was also simply wrong: TreeExplainer's cost scales with tree
+structure, not with vocabulary size, and per-posting SHAP contributions are sparse, so
+the top-k terms driving a single decision are just as readable either way. Capping the
+vocabulary bought nothing and cost 0.046 PR-AUC.
 """
 
 from __future__ import annotations
@@ -28,7 +37,7 @@ class GradientBoosting(Model):
 
     def __init__(
         self,
-        max_features: int = 2_000,
+        max_features: int = 30_000,
         n_estimators: int = 400,
         learning_rate: float = 0.05,
         num_leaves: int = 31,
