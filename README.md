@@ -4,6 +4,8 @@
 
 **Fraudulent job posting detection, evaluated honestly and deployed against a live feed.**
 
+**[Try the live endpoint →](https://veridyx-3hpqwaiclyrc7hnzvadjip.streamlit.app/)**  ·  Paste a job posting, get a score and the features behind it.
+
 Submitted to ML Bubble 2026 (TE-BE Advanced Track). Sibling to
 [quantyx](https://github.com/yugvyas/quantyx), whose live job-market feed Veridyx is
 evaluated against.
@@ -154,8 +156,9 @@ work on this task".
 
 ## Reproducing
 
-Requires Python 3.11–3.13. **On macOS, LightGBM needs OpenMP:** `brew install libomp`,
-without which it fails at import with a `dlopen` error.
+Requires Python 3.11–3.14. **On macOS, LightGBM needs OpenMP:** `brew install libomp`,
+without which it fails at import with a `dlopen` error. On Linux the equivalent is
+`libgomp1`, which is why it appears in both `packages.txt` and the CI workflow.
 
 ```bash
 python3.11 -m venv .venv
