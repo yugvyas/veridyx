@@ -1,0 +1,17 @@
+# Streamlit's own chrome, matched to the Evidence Tag world so the framework's
+# defaults do not sit visibly beside the design layer. serve/theme.py owns everything
+# beyond these base tokens.
+[theme]
+base = "dark"
+primaryColor = "#b08d4a"
+backgroundColor = "#1d2024"
+secondaryBackgroundColor = "#262a2f"
+textColor = "#eef0ee"
+font = "sans serif"
+
+[client]
+toolbarMode = "minimal"
+showErrorDetails = false
+
+[server]
+headless = true
